@@ -137,7 +137,8 @@ jobs:
           set -o pipefail
           echo "Building environment: ${{ env.SELECTED_ENV }}"
           platformio run -e "${{ env.SELECTED_ENV }}" | tee "build-${{ env.SELECTED_ENV }}.log"
-
+          platformio run -e "${{ env.SELECTED_ENV }}" -t build-firmware
+          
       - name: Build summary
         run: |
           if [[ -f "build-${{ env.SELECTED_ENV }}.log" ]]; then
